@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board - clubs' points</title>
+</head>
+
+<body>
+    <h2>Board - clubs' points</h2>
+
+    <div>
+        <table>
+            <tr>
+                <th>Club</th>
+                <th>Points</th>
+            </tr>
+            {%for club in clubs %}
+            <tr>
+                <td>{{club['name']}}</td>
+                <td>{{club['points']}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+
+</body>
+</html>
