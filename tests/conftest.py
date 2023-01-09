@@ -1,10 +1,12 @@
 import pytest
 import server
 
+
 @pytest.fixture
-def client(monkeypatch, clubs_data, competitions_data):
+def client(monkeypatch, clubs_data, competitions_data, cart):
     monkeypatch.setattr(server, 'clubs', clubs_data)
     monkeypatch.setattr(server, 'competitions', competitions_data)
+    monkeypatch.setattr(server, 'cart', cart)
     with server.app.test_client() as client:
         yield client
 
