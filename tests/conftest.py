@@ -48,6 +48,6 @@ def cart(clubs_data, competitions_data):
     }
 
 @pytest.fixture
-def past_competition(competitions_data):
+def competition_over(competitions_data):
     competitions_data[0]["date"] = "2022-02-01 10:00:00"
     return competitions_data[0]

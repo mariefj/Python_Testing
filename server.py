@@ -53,7 +53,7 @@ def book(competition,club):
         foundCompetition = [c for c in competitions if c['name'] == competition][0]
         return render_template('booking.html',club=foundClub,competition=foundCompetition)
     except(IndexError):
-        flash("Sorry, this competition wasn't found.")
+        flash("Sorry, something went wrong. Please try again")
         return render_template('welcome.html', club=club, competitions=competitions)
 
 @app.route('/purchasePlaces', methods=['POST'])
