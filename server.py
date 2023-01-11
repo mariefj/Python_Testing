@@ -37,7 +37,6 @@ def index():
 
 
 @app.route('/showSummary', methods=['POST'])
-@app.errorhandler(400)
 def showSummary():
     try:
         club = [club for club in clubs if club['email'] == request.form['email']][0]
@@ -45,11 +44,10 @@ def showSummary():
 
     except IndexError:
         flash("Sorry, this email wasn't found.")
-        return redirect(url_for('index')), 400
+        return redirect(url_for('index'))
 
 
 @app.route('/book/<competition>/<club>')
-@app.errorhandler(400)
 def book(competition,club):
     try:
         foundClub = [c for c in clubs if c['name'] == club][0]
@@ -57,7 +55,7 @@ def book(competition,club):
         return render_template('booking.html', club=foundClub, competition=foundCompetition)
     except(IndexError):
         flash("Sorry, something went wrong. Please try again")
-        return render_template('welcome.html', club=club, competitions=competitions), 400
+        return render_template('welcome.html', club=club, competitions=competitions)
 
 
 @app.route('/purchasePlaces', methods=['POST'])
