@@ -4,7 +4,7 @@ import pytest
 ##########################  app success  ###############################
 
 
-def test_app_success(client, clubs_data, competitions_data):
+def test_app_success(client, clubs_data, competitions_data, cart):
     club = clubs_data[0]
     competition = competitions_data[0]
 
@@ -30,16 +30,17 @@ def test_app_success(client, clubs_data, competitions_data):
         'club': club['name'],
         'places': 2,
     })
+    assert cart[competition['name']][club['name']] == 12
     assert response.status_code == 200
 
     response = client.get('/logout')
-    assert response.headers["Location"] == "/"
+    assert response.headers["Location"] == "http://localhost/"
 
 
 ##########################  app fail purchasePlaces  ###############################
 
 
-def test_app_fail_to_book_more_than_maxPlaces(client, clubs_data, competitions_data):
+def test_app_fail_to_book_more_than_maxPlaces(client, clubs_data, competitions_data, cart):
     club = clubs_data[0]
     competition = competitions_data[0]
 
@@ -70,3 +71,6 @@ def test_app_fail_to_book_more_than_maxPlaces(client, clubs_data, competitions_d
         'places': 5,
     })
     assert response.status_code == 400
+
+    assert cart[competition['name']][club['name']] == 10
+

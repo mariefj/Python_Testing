@@ -19,7 +19,7 @@ def test_login_not_found(client):
 
 def test_logout_success(client):
     response = client.get('/logout')
-    assert response.headers["Location"] == "/"
+    assert response.headers["Location"] == "http://localhost/"
 
 
 ##########################  showSummary  ###############################
