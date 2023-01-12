@@ -1,5 +1,5 @@
 import pytest
-
+from flask import url_for
 
 ##########################  app success  ###############################
 
@@ -34,7 +34,7 @@ def test_app_success(client, clubs_data, competitions_data, cart):
     assert response.status_code == 200
 
     response = client.get('/logout')
-    assert response.headers["Location"] == "http://localhost/"
+    assert response.headers["location"] == '/'
 
 
 ##########################  app fail purchasePlaces  ###############################
